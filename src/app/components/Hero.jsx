@@ -4,18 +4,19 @@ function Hero() {
   return (
     <section className="relative h-screen w-full overflow-hidden">
 
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover"
-    >
-      <source
-        src="https://customer-bhx35sxtf94ncmdm.cloudflarestream.com/f055cd30847ca49fdf33efe83093ac41/downloads/default.mp4"
-        type="video/mp4"
-    />
-    </video>
+     <iframe
+  src="https://customer-bhx35sxtf94ncmdm.cloudflarestream.com/f055cd30847ca49fdf33efe83093ac41/iframe?autoplay=true&muted=true&loop=true&controls=false&poster=https%3A%2F%2Fcustomer-bhx35sxtf94ncmdm.cloudflarestream.com%2Ff055cd30847ca49fdf33efe83093ac41%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600"
+  style={{
+    border: "none",
+    position: "absolute",
+    top: 0, left: 0,
+    height: "100%",
+    width: "100%",
+    transform: "scale(1.05)",
+    objectFit: "cover",
+  }}
+  allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
+/>
 
       <div className="absolute inset-0 bg-black/40" />
 
