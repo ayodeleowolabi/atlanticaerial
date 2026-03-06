@@ -10,9 +10,12 @@ function Hero() {
         loop
         playsInline
         className="absolute inset-0 w-full h-full object-cover"
-      >
-        <source src="/hero.mp4" type="video/mp4" />
-      </video>
+    >
+      <source
+        src="https://customer-bhx35sxtf94ncmdm.cloudflarestream.com/f055cd30847ca49fdf33efe83093ac41/downloads/default.mp4"
+        type="video/mp4"
+    />
+    </video>
 
       <div className="absolute inset-0 bg-black/40" />
 
