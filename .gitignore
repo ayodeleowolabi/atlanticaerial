@@ -43,3 +43,6 @@ next-env.d.ts
 # Video assets (store elsewhere)
 public/portfolio/*.mp4
 public/*.mp4
+
+public/portfolio/*.mp4
+public/*.mp4
