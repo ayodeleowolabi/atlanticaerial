@@ -3,50 +3,150 @@
 import { useRef, useState } from "react";
 
 const VIDEOS = [
-  { title: "Shore", location: "Coast", src: "/portfolio/shore.mp4" },
-  { title: "Sunset", location: "Golden Hour", src: "/portfolio/sunset.mp4" },
-  { title: "Mountains", location: "Highlands", src: "/portfolio/mountains.mp4" },
-  { title: "Sevilla II", location: "Seville, ES", src: "/portfolio/sevilla2.mp4" },
-  { title: "Krabi", location: "Thailand", src: "/portfolio/krabi.mp4" },
-  { title: "Sevilla", location: "Seville, ES", src: "/portfolio/sevilla.mp4" },
-  { title: "Naiharn", location: "Phuket", src: "/portfolio/naiharnayo.mp4" },
-  { title: "Yaniu", location: "Phuket", src: "/portfolio/yaniuayo.mp4" },
+  {
+    title: "Shore",
+    location: "Coast",
+    type: "cloudflare",
+    src: "https://customer-bhx35sxtf94ncmdm.cloudflarestream.com/4ad4224021972a6905b1a9e86a22a92c/iframe?autoplay=true&muted=true&loop=true&controls=false",
+    thumb: "https://customer-bhx35sxtf94ncmdm.cloudflarestream.com/4ad4224021972a6905b1a9e86a22a92c/thumbnails/thumbnail.jpg?height=600",
+  },
+  {
+    title: "Sunset",
+    location: "Golden Hour",
+    type: "cloudflare",
+    src: "https://customer-bhx35sxtf94ncmdm.cloudflarestream.com/c62584728c64f928a74c7627616b4dab/iframe?autoplay=true&muted=true&loop=true&controls=false",
+    thumb: "https://customer-bhx35sxtf94ncmdm.cloudflarestream.com/c62584728c64f928a74c7627616b4dab/thumbnails/thumbnail.jpg?height=600",
+  },
+  {
+    title: "Mountains",
+    location: "Highlands",
+    type: "cloudflare",
+    src: "https://customer-bhx35sxtf94ncmdm.cloudflarestream.com/e7c08cebd33cfd5a278728a7a334e268/iframe?autoplay=true&muted=true&loop=true&controls=false",
+    thumb: "https://customer-bhx35sxtf94ncmdm.cloudflarestream.com/e7c08cebd33cfd5a278728a7a334e268/thumbnails/thumbnail.jpg?height=600",
+  },
+  {
+    title: "Sevilla II",
+    location: "Seville, ES",
+    type: "cloudflare",
+    src: "https://customer-bhx35sxtf94ncmdm.cloudflarestream.com/a8fa29af12c793e9c9e7de276fb90ca3/iframe?autoplay=true&muted=true&loop=true&controls=false",
+    thumb: "https://customer-bhx35sxtf94ncmdm.cloudflarestream.com/a8fa29af12c793e9c9e7de276fb90ca3/thumbnails/thumbnail.jpg?height=600",
+  },
+  {
+    title: "Aerial Film",
+    location: "Atlantic Aerial",
+    type: "cloudflare",
+    src: "https://customer-bhx35sxtf94ncmdm.cloudflarestream.com/2014b93520767bcdb96652e660725137/iframe?autoplay=true&muted=true&loop=true&controls=false",
+    thumb: "https://customer-bhx35sxtf94ncmdm.cloudflarestream.com/2014b93520767bcdb96652e660725137/thumbnails/thumbnail.jpg?height=600",
+  },
+  {
+    title: "Aerial Film",
+    location: "Atlantic Aerial",
+    type: "cloudflare",
+    src: "https://customer-bhx35sxtf94ncmdm.cloudflarestream.com/ca4f3a1b1b8e54d283e716b6e814ed91/iframe?autoplay=true&muted=true&loop=true&controls=false",
+    thumb: "https://customer-bhx35sxtf94ncmdm.cloudflarestream.com/ca4f3a1b1b8e54d283e716b6e814ed91/thumbnails/thumbnail.jpg?height=600",
+  },
+  {
+    title: "Aerial Film",
+    location: "Atlantic Aerial",
+    type: "cloudflare",
+    src: "https://customer-bhx35sxtf94ncmdm.cloudflarestream.com/baad432b19dd188eb12f06cfc94cdd57/iframe?autoplay=true&muted=true&loop=true&controls=false",
+    thumb: "https://customer-bhx35sxtf94ncmdm.cloudflarestream.com/baad432b19dd188eb12f06cfc94cdd57/thumbnails/thumbnail.jpg?height=600",
+  },
+  {
+    title: "Aerial Film",
+    location: "Atlantic Aerial",
+    type: "cloudflare",
+    src: "https://customer-bhx35sxtf94ncmdm.cloudflarestream.com/0f37086c3cf4f60c9a15c03bcddc837e/iframe?autoplay=true&muted=true&loop=true&controls=false",
+    thumb: "https://customer-bhx35sxtf94ncmdm.cloudflarestream.com/0f37086c3cf4f60c9a15c03bcddc837e/thumbnails/thumbnail.jpg?height=600",
+  },
+
+  // Local files — upload to Cloudflare and update when ready
 ];
 
-function VideoTile({ v }) {
+// ── Cloudflare tile (iframe, hover to play) ──────────────────
+function CloudflareTile({ v }) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <div
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="group relative overflow-hidden rounded-xl border border-white/10 bg-white/5 cursor-pointer
+                 transition-all duration-300 will-change-transform
+                 hover:-translate-y-2 hover:shadow-[0_20px_60px_rgba(0,0,0,0.55)] hover:border-white/20"
+    >
+      <div className="relative aspect-[16/10] bg-black">
+        <img
+          src={v.thumb}
+          alt={v.title}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
+            hovered ? "opacity-0" : "opacity-100"
+          }`}
+        />
+
+        {hovered && (
+          <iframe
+            src={v.src}
+            className="absolute inset-0 w-full h-full"
+            style={{ border: "none" }}
+            allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
+          />
+        )}
+
+        <div
+          className={`absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-black/10 transition-opacity duration-300 pointer-events-none ${
+            hovered ? "opacity-20" : "opacity-90"
+          }`}
+        />
+
+        <div
+          className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 pointer-events-none ${
+            hovered ? "opacity-0" : "opacity-100"
+          }`}
+        >
+          <div className="flex items-center gap-3 rounded-full border border-white/20 bg-black/45 px-5 py-3 backdrop-blur">
+            <span className="text-white text-sm font-semibold tracking-tight">Play</span>
+            <span className="text-white/80 text-base leading-none">▶</span>
+          </div>
+        </div>
+
+        <div className="absolute bottom-0 left-0 right-0 p-5 pointer-events-none">
+          <div className="text-white font-semibold tracking-tight text-lg leading-tight">{v.title}</div>
+          <div className="mt-1 text-white/60 text-xs tracking-[0.18em] uppercase">{v.location}</div>
+        </div>
+      </div>
+      <div className="h-1 w-full bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+    </div>
+  );
+}
+
+// ── Local video tile ────────────────────
+function LocalTile({ v }) {
   const vidRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
   const togglePlay = async () => {
     const el = vidRef.current;
     if (!el) return;
-
     try {
       if (el.paused) {
-        // Ensure it can autoplay on click (muted helps avoid policy issues)
         await el.play();
         setIsPlaying(true);
       } else {
         el.pause();
         setIsPlaying(false);
       }
-    } catch {
-      // If play fails, leave state as-is
-    }
+    } catch {}
   };
 
   const goFullscreen = async (e) => {
     e.stopPropagation();
     const el = vidRef.current;
     if (!el) return;
-
-    // Prefer native video fullscreen (mobile-friendly)
     try {
       if (el.requestFullscreen) await el.requestFullscreen();
-      else if (el.webkitEnterFullscreen) el.webkitEnterFullscreen(); // Safari iOS
-    } catch {
-      // ignore
-    }
+      else if (el.webkitEnterFullscreen) el.webkitEnterFullscreen();
+    } catch {}
   };
 
   return (
@@ -62,7 +162,6 @@ function VideoTile({ v }) {
           muted
           playsInline
           preload="metadata"
-          controls={false}
           className="absolute inset-0 h-full w-full object-cover"
           onPlay={() => setIsPlaying(true)}
           onPause={() => setIsPlaying(false)}
@@ -70,14 +169,12 @@ function VideoTile({ v }) {
           <source src={v.src} type="video/mp4" />
         </video>
 
-        {/* Cinematic overlay (reduces when playing) */}
         <div
           className={`absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-black/10 transition-opacity duration-300 ${
             isPlaying ? "opacity-35" : "opacity-90"
           }`}
         />
 
-        {/* Play button (center) */}
         <div
           className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${
             isPlaying ? "opacity-0 group-hover:opacity-80" : "opacity-100"
@@ -91,31 +188,21 @@ function VideoTile({ v }) {
           </div>
         </div>
 
-        {/* Fullscreen button (top right) */}
         <button
           type="button"
           onClick={goFullscreen}
           className="absolute top-4 right-4 rounded-full border border-white/15 bg-black/45 backdrop-blur px-3 py-2
                      text-[0.65rem] tracking-[0.18em] uppercase text-white/85
                      opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity"
-          aria-label="Full screen"
-          title="Full screen"
         >
           Full
         </button>
 
-        {/* Text bottom */}
         <div className="absolute bottom-0 left-0 right-0 p-5">
-          <div className="text-white font-semibold tracking-tight text-lg leading-tight">
-            {v.title}
-          </div>
-          <div className="mt-1 text-white/60 text-xs tracking-[0.18em] uppercase">
-            {v.location}
-          </div>
+          <div className="text-white font-semibold tracking-tight text-lg leading-tight">{v.title}</div>
+          <div className="mt-1 text-white/60 text-xs tracking-[0.18em] uppercase">{v.location}</div>
         </div>
       </div>
-
-      {/* subtle base shine on hover */}
       <div className="h-1 w-full bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
     </div>
   );
@@ -127,9 +214,7 @@ export default function PortfolioCarousel() {
       <div className="max-w-6xl mx-auto">
         <div className="flex items-end justify-between gap-10 mb-10">
           <div>
-            <p className="text-white/50 text-xs tracking-[0.28em] uppercase mb-3">
-              Selected Work
-            </p>
+            <p className="text-white/50 text-xs tracking-[0.28em] uppercase mb-3">Selected Work</p>
             <h2
               className="font-semibold tracking-tight leading-[1.05]"
               style={{ fontSize: "clamp(2.2rem, 4.5vw, 3.6rem)" }}
@@ -138,15 +223,18 @@ export default function PortfolioCarousel() {
             </h2>
           </div>
           <p className="hidden md:block text-white/55 text-sm max-w-sm leading-relaxed">
-            Hover to lift. Click to play. Use Full to expand.
+            Hover to play. Click fullscreen to expand.
           </p>
         </div>
 
-        {/* 4 cols desktop, 2 cols tablet, 1 col mobile */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {VIDEOS.slice(0, 8).map((v) => (
-            <VideoTile key={v.src} v={v} />
-          ))}
+          {VIDEOS.map((v) =>
+            v.type === "cloudflare" ? (
+              <CloudflareTile key={v.src} v={v} />
+            ) : (
+              <LocalTile key={v.src} v={v} />
+            )
+          )}
         </div>
       </div>
     </section>

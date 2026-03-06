@@ -122,7 +122,7 @@ export default function Nav() {
           className="text-white font-semibold tracking-tight text-lg"
           onClick={() => setActive("top")}
         >
-          Atlantic Aerials
+          Atlantic Aerial
         </a>
 
         {/* Links */}
