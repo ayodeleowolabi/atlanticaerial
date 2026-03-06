@@ -66,6 +66,21 @@ const VIDEOS = [
 // ── Cloudflare tile (iframe, hover to play) ──────────────────
 function CloudflareTile({ v }) {
   const [hovered, setHovered] = useState(false);
+  const frameWrapRef = useRef(null);
+
+  const goFullscreen = async (e) => {
+    e.stopPropagation();
+    const el = frameWrapRef.current;
+    if (!el) return;
+
+    try {
+      if (el.requestFullscreen) {
+        await el.requestFullscreen();
+      } else if (el.webkitRequestFullscreen) {
+        el.webkitRequestFullscreen();
+      }
+    } catch {}
+  };
 
   return (
     <div
@@ -75,7 +90,8 @@ function CloudflareTile({ v }) {
                  transition-all duration-300 will-change-transform
                  hover:-translate-y-2 hover:shadow-[0_20px_60px_rgba(0,0,0,0.55)] hover:border-white/20"
     >
-      <div className="relative aspect-[16/10] bg-black">
+      <div ref={frameWrapRef} className="relative aspect-[16/10] bg-black">
+
         <img
           src={v.thumb}
           alt={v.title}
@@ -86,10 +102,12 @@ function CloudflareTile({ v }) {
 
         {hovered && (
           <iframe
+            title={v.title}
             src={v.src}
             className="absolute inset-0 w-full h-full"
             style={{ border: "none" }}
-            allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
+            allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen"
+            allowFullScreen
           />
         )}
 
@@ -99,23 +117,27 @@ function CloudflareTile({ v }) {
           }`}
         />
 
-        <div
-          className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 pointer-events-none ${
-            hovered ? "opacity-0" : "opacity-100"
-          }`}
+        {/* FULLSCREEN BUTTON */}
+        <button
+          type="button"
+          onClick={goFullscreen}
+          className="absolute top-4 right-4 z-20 rounded-full border border-white/15 bg-black/45 backdrop-blur px-3 py-2
+                     text-[0.65rem] tracking-[0.18em] uppercase text-white/85
+                     opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity"
         >
-          <div className="flex items-center gap-3 rounded-full border border-white/20 bg-black/45 px-5 py-3 backdrop-blur">
-            <span className="text-white text-sm font-semibold tracking-tight">Play</span>
-            <span className="text-white/80 text-base leading-none">▶</span>
+          Full
+        </button>
+
+        <div className="absolute bottom-0 left-0 right-0 p-5 pointer-events-none">
+          <div className="text-white font-semibold tracking-tight text-lg leading-tight">
+            {v.title}
+          </div>
+          <div className="mt-1 text-white/60 text-xs tracking-[0.18em] uppercase">
+            {v.location}
           </div>
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0 p-5 pointer-events-none">
-          <div className="text-white font-semibold tracking-tight text-lg leading-tight">{v.title}</div>
-          <div className="mt-1 text-white/60 text-xs tracking-[0.18em] uppercase">{v.location}</div>
-        </div>
       </div>
-      <div className="h-1 w-full bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
     </div>
   );
 }
