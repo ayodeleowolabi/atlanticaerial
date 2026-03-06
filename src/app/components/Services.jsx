@@ -36,10 +36,11 @@ export default function Services() {
           >
             What We Document
           </h2>
-        </div>
-        <p className="mt-6 text-white/40 text-sm">
-Washington DC · New York · Philadelphia · East Coast
+                 <p className="mt-6 text-white/40 text-sm">
+Washington DC · New York · Philadelphia · East Coast · Beyond
 </p>
+        </div>
+ 
 
         {/* services grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

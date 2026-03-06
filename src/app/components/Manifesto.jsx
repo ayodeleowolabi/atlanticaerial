@@ -5,8 +5,7 @@ export default function Manifesto() {
     "FAA Part 107 Licensed",
     "Experience across civic and institutional environments",
     "Construction and infrastructure documentation",
-    "Available for projects across the East Coast",
-  ];
+    "Available for projects across the East Coast & beyond",  ];
 
   return (
     <section
