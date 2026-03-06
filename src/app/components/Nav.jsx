@@ -115,7 +115,7 @@ export default function Nav() {
         scrolled ? "bg-black/80 backdrop-blur-md" : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-10 py-5 flex items-center justify-between">
+    <div className="max-w-[1600px] mx-auto px-4 lg:px-2 py-5 flex items-center justify-between">
         {/* Logo */}
         <a
           href="#"

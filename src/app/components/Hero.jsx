@@ -1,47 +1,59 @@
-"use client"
+"use client";
 
-function Hero() {
+export default function Hero() {
   return (
-    <section className="relative h-screen w-full overflow-hidden">
+    <section className="relative min-h-[100svh] w-full overflow-hidden bg-black">
 
-     <iframe
-  src="https://customer-bhx35sxtf94ncmdm.cloudflarestream.com/f055cd30847ca49fdf33efe83093ac41/iframe?autoplay=true&muted=true&loop=true&controls=false&poster=https%3A%2F%2Fcustomer-bhx35sxtf94ncmdm.cloudflarestream.com%2Ff055cd30847ca49fdf33efe83093ac41%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600"
-  style={{
-    border: "none",
-    position: "absolute",
-    top: 0, left: 0,
-    height: "100%",
-    width: "100%",
-    transform: "scale(1.05)",
-    objectFit: "cover",
-  }}
-  allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
-/>
+    {/* Cloudflare Stream background video */}
+<div className="absolute inset-0 overflow-hidden">
 
-      <div className="absolute inset-0 bg-black/40" />
+  <iframe
+    src="https://customer-bhx35sxtf94ncmdm.cloudflarestream.com/a13099f9242c46335525928012ca8d6d/iframe?autoplay=true&muted=true&loop=true&controls=false"
+    loading="lazy"
+    className="
+      absolute
+      top-1/2 left-1/2
+      min-h-full min-w-full
+      w-[177.77vh] h-[56.25vw]
+      -translate-x-1/2 -translate-y-1/2
+      scale-110 sm:scale-100
+    "
+    style={{ border: "none" }}
+    allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+    allowFullScreen
+  />
 
-      <div className="relative z-10 flex items-end h-full px-10 pb-16">
-        <div>
-          <p className="text-white/70 tracking-[0.25em] uppercase text-xs mb-5">
+</div>
+
+      {/* overlays */}
+      <div className="absolute inset-0 bg-black/35" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black" />
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent" />
+
+      {/* content */}
+      <div className="relative z-10 flex min-h-[100svh] flex-col justify-end px-6 sm:px-10 pb-10 sm:pb-16">
+        <div className="max-w-5xl">
+
+          <p className="text-white/70 tracking-[0.25em] uppercase text-[0.7rem] sm:text-xs mb-4 sm:mb-5">
             Aerial Film & Photography
           </p>
 
           <h1
-            className="text-white leading-[0.9] font-semibold"
-            style={{ fontSize: "clamp(4rem, 9vw, 9rem)" }}
+            className="text-white leading-[0.88] font-semibold"
+            style={{ fontSize: "clamp(3.5rem, 14vw, 9rem)" }}
           >
             ATLANTIC
             <br />
             <span className="italic text-white/60">AERIAL</span>
           </h1>
-          <p className="text-white/70 tracking-[0.25em] uppercase text-xs mb-5">
+
+          <p className="mt-3 text-white/65 tracking-[0.22em] uppercase text-[0.72rem] sm:text-xs">
             FAA Part 107 Licensed
           </p>
+
         </div>
       </div>
 
     </section>
-  )
+  );
 }
-
-export default Hero

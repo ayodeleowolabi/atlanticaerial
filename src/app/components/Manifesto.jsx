@@ -1,15 +1,23 @@
 "use client";
 
 export default function Manifesto() {
+  const points = [
+    "FAA Part 107 Licensed",
+    "Experience across civic and institutional environments",
+    "Construction and infrastructure documentation",
+    "Available for projects across the East Coast",
+  ];
+
   return (
     <section
       id="manifesto"
-      className="relative min-h-[60vh] bg-black text-white flex items-center"
+      className="relative min-h-[50vh] bg-black text-white flex items-start"
     >
-      {/* subtle top fade so it sits nicely under the hero */}
+      {/* subtle fade from hero */}
       <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/80 to-transparent pointer-events-none" />
 
-      <div className="w-full max-w-6xl mx-auto px-10 py-24 text-center">
+      <div className="w-full max-w-6xl mx-auto px-6 sm:px-10 pt-14 pb-20 sm:pt-20 sm:pb-24 text-center">
+
         <h2
           className="font-semibold tracking-tight leading-[1.05]"
           style={{ fontSize: "clamp(2.6rem, 5vw, 4.5rem)" }}
@@ -24,24 +32,28 @@ export default function Manifesto() {
           for architecture, infrastructure, and the cities the world comes to see.
         </p>
 
-        <div className="mt-14 max-w-4xl mx-auto">
-          <p
-            className="text-white/55 leading-relaxed"
-            style={{ fontSize: "clamp(0.98rem, 1.15vw, 1.1rem)" }}
-          >
-            Experience across civic buildings, laboratories, and large-scale construction
-            environments in Washington DC.
-          </p>
+        {/* bullet grid */}
+        <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-8 max-w-4xl mx-auto">
 
-          <p
-            className="mt-5 text-white/45 leading-relaxed"
-            style={{ fontSize: "clamp(0.98rem, 1.15vw, 1.1rem)" }}
-          >
-            With experience working across major municipal facilities and complex construction
-            environments in Washington DC, we bring a disciplined and cinematic approach to
-            aerial documentation—serving architecture, infrastructure, and destination storytelling.
-          </p>
+          {points.map((point, i) => (
+            <div key={i} className="flex items-start gap-4 text-left">
+              
+              {/* yellow line */}
+              <div className="w-10 h-[2px] bg-yellow-400 mt-[10px]" />
+
+              {/* text */}
+              <p
+                className="text-white/60 leading-relaxed"
+                style={{ fontSize: "clamp(0.95rem, 1.1vw, 1.05rem)" }}
+              >
+                {point}
+              </p>
+
+            </div>
+          ))}
+
         </div>
+
       </div>
     </section>
   );
