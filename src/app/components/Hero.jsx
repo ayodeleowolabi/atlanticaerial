@@ -7,18 +7,17 @@ export default function Hero() {
     {/* Cloudflare Stream background video */}
 <div className="absolute inset-0 overflow-hidden">
 
-  <iframe
-    src="https://customer-bhx35sxtf94ncmdm.cloudflarestream.com/a13099f9242c46335525928012ca8d6d/iframe?autoplay=true&muted=true&loop=true&controls=false"
+ <iframe
+    src="https://customer-bhx35sxtf94ncmdm.cloudflarestream.com/64cde6f1426b0624030a53423db7da5b/iframe?autoplay=true&muted=true&loop=true&controls=false&poster=https%3A%2F%2Fcustomer-bhx35sxtf94ncmdm.cloudflarestream.com%2F64cde6f1426b0624030a53423db7da5b%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600"
     loading="lazy"
-    className="
-      absolute
-      top-1/2 left-1/2
-      min-h-full min-w-full
-      w-[177.77vh] h-[56.25vw]
-      -translate-x-1/2 -translate-y-1/2
-      scale-110 sm:scale-100
-    "
-    style={{ border: "none" }}
+    style={{
+      border: "none",
+      position: "absolute",
+      top: 0,
+      left: 0,
+      height: "100%",
+      width: "100%",
+    }}
     allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
     allowFullScreen
   />
@@ -26,7 +25,7 @@ export default function Hero() {
 </div>
 
       {/* overlays */}
-      <div className="absolute inset-0 bg-black/35" />
+      
       <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black" />
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent" />
 
