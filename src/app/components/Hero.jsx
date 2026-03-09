@@ -2,23 +2,23 @@
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[100svh] w-full overflow-hidden bg-black">
+    <section className="relative min-h-[100svh] w-full h-screen overflow-hidden bg-black">
 
     {/* Cloudflare Stream background video */}
-<div className="absolute inset-0 overflow-hidden">
+<div className="absolute inset-0 overflow-hidden min-h-[100svh]">
 
- <iframe
-    src="https://customer-bhx35sxtf94ncmdm.cloudflarestream.com/64cde6f1426b0624030a53423db7da5b/iframe?autoplay=true&muted=true&loop=true&controls=false&poster=https%3A%2F%2Fcustomer-bhx35sxtf94ncmdm.cloudflarestream.com%2F64cde6f1426b0624030a53423db7da5b%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600"
+  <iframe
+    src="https://customer-bhx35sxtf94ncmdm.cloudflarestream.com/64cde6f1426b0624030a53423db7da5b/iframe?autoplay=true&muted=true&loop=true&controls=false&playsinline=true"
     loading="lazy"
-    style={{
-      border: "none",
-      position: "absolute",
-      top: 0,
-      left: 0,
-      height: "100%",
-      width: "100%",
-    }}
-    allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+    className="
+      absolute
+      top-1/2 left-1/2
+      min-h-full min-w-full
+      w-[177.77vh] h-[56.25vw]
+      -translate-x-1/2 -translate-y-1/2
+    "
+    style={{ border: "none" }}
+    allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
     allowFullScreen
   />
 
